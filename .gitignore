@@ -1,0 +1,21 @@
+# Local overrides on top of the shared global gitignore.
+#
+# The global ignore (/root/.config/git/ignore, via core.excludesFile) excludes
+# `data/` because of ML datasets that are too large for this phone. That rule is
+# correct for model work but WRONG here: the hackathon kit's data/ is the
+# 11 MB synthetic dataset the whole evaluation runs on. Re-include it.
+
+!data/
+!The-Sequential-Matching-Problem/data/
+!The-Sequential-Matching-Problem/data/**
+
+# Never commit credentials or evaluation secrets even if someone drops them in.
+*.env
+*.key
+*.pem
+secrets/
+
+# Scratch
+results/**/raw/
+*.log
+__pycache__/
