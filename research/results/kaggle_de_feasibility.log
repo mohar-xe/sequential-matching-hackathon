@@ -1,0 +1,63 @@
+modules unpacked to /tmp/seqmatch_5qu4jk5v
+files: ['_bootstrap.py', 'candidate.py', 'ceiling.py', 'consistency.py', 'de_feasibility.py', 'kit.py', 'prob_model.py', 'soft_fields.py']
+cores: 4
+
+========================================================================
+RUNNING de_feasibility
+========================================================================
+cores visible: 4
+
+=== 1. cost of one fitness evaluation ===
+  288 episodes (4 weight sets x 6 families x 12 seeds) in 1143.5 s
+  3.9706 s per episode wall-clock on 4 cores
+  one fitness eval (12 seeds x 6 families = 72 episodes) = 285.9 s
+
+  DE budget, population 50 x 100 generations = 5000 evaluations
+    at 72 episodes/eval, 4 seeds/eval:  132.4 h
+    at 72 episodes/eval, 8 seeds/eval:  264.7 h
+    note: no accelerator applies; this is pure-Python CPU work
+
+=== 2. per-family primary scores for four weight vectors ===
+  base       primary 0.3403   {'development': 0.25, 'sparse': 0.083, 'cold_start': 0.542, 'delayed': 0.5, 'shift': 0.417, 'drift': 0.25}
+  shift      primary 0.4236   {'development': 0.417, 'sparse': 0.083, 'cold_start': 0.625, 'delayed': 0.5, 'shift': 0.5, 'drift': 0.417}
+  bad        primary 0.2917   {'development': 0.208, 'sparse': 0.083, 'cold_start': 0.417, 'delayed': 0.458, 'shift': 0.375, 'drift': 0.208}
+  scrambled  primary 0.4097   {'development': 0.5, 'sparse': 0.083, 'cold_start': 0.5, 'delayed': 0.458, 'shift': 0.417, 'drift': 0.5}
+
+=== 3. common random numbers: does pairing reduce the noise? ===
+  A=base primary 0.3403 (sd 0.4181)   B=shift primary 0.4236 (sd 0.4570)
+  true mean difference            : +0.0833
+  unpaired standard error         : 0.0730   <- what DE effectively does
+  PAIRED standard error (CRN)     : 0.0442   <- variance reduction 1.7x
+
+=== 4. how many seed-family runs to resolve a real effect? ===
+  detect +0.02  ->   1353 paired runs  (226 full 72-episode evals)
+  detect +0.05  ->    217 paired runs  (36 full 72-episode evals)
+  detect +0.10  ->     55 paired runs  (9 full 72-episode evals)
+  detect +0.20  ->     14 paired runs  (2 full 72-episode evals)
+  the real assessment gives 20 seeds x 6 families = 120 paired runs
+
+=== 5. verdict inputs ===
+  spread across the four weight vectors: 0.2917 .. 0.4236  (range 0.1319)
+  best-vs-worst paired sd: 0.3558
+  -> DE searches a 4-dim space whose total achievable range here is ~0.132,
+     while ONE paired episode already carries noise of similar size.
+
+wrote de_feasibility_result.json
+[de_feasibility finished in 1143.7 s]
+
+========================================================================
+RUNNING consistency
+========================================================================
+development  mean |reachable E|=103.1  mean assigned=81.0  assigned-but-unreachable=0  assigned-and-not-even-truth-feasible=0
+sparse       mean |reachable E|=20.9  mean assigned=20.4  assigned-but-unreachable=0  assigned-and-not-even-truth-feasible=0
+cold_start   mean |reachable E|=90.5  mean assigned=73.7  assigned-but-unreachable=0  assigned-and-not-even-truth-feasible=0
+
+development  |E|=103.1  best 8-round peeling uses 99.8 edges (97% of E)
+sparse       |E|=20.9  best 8-round peeling uses 20.9 edges (100% of E)
+cold_start   |E|=90.5  best 8-round peeling uses 89.2 edges (99% of E)
+delayed      |E|=103.1  best 8-round peeling uses 99.8 edges (97% of E)
+shift        |E|=103.1  best 8-round peeling uses 99.8 edges (97% of E)
+drift        |E|=103.1  best 8-round peeling uses 99.8 edges (97% of E)
+[consistency finished in 401.6 s]
+
+ALL DONE

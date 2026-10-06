@@ -18,6 +18,9 @@ secrets/
 # Scratch
 results/**/raw/
 *.log
+# Experiment evidence logs ARE tracked. (Note: gitignore does not strip trailing
+# comments, so this negation must be the whole line.)
+!research/results/*.log
 __pycache__/
 # Kaggle kernel working dir (regenerate with ./build_kaggle_bundle.sh)
 kaggle-kernel/
