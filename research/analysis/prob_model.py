@@ -7,7 +7,7 @@ measure how much headroom the hackathon metric actually has.
 import math
 import sys
 
-sys.path.insert(0, '/root/hackathon/The-Sequential-Matching-Problem')
+import _bootstrap  # noqa: F401  (sets sys.path portably)
 from kit import Simulator, generate, eligibility, HARD, SOFT, OPTIONS  # noqa: E402
 
 # ---------------------------------------------------------------- quadrature

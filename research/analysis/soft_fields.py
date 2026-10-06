@@ -9,9 +9,8 @@ import math
 import statistics
 import sys
 
-sys.path.insert(0, '/root/hackathon/The-Sequential-Matching-Problem')
-sys.path.insert(0, '/root/hackathon/analysis')
 
+import _bootstrap  # noqa: F401  (sets sys.path portably)
 from kit import Simulator, generate, HARD, SOFT, OPTIONS
 
 KEY = ['relationship_goal', 'relationship_pace', 'lifestyle', 'conversations']
@@ -81,7 +80,7 @@ def test_c_matters():
     print('                 lifestyle .25, conversations .2   (sum 1.55)')
     print('    shift:       relationship_goal .25, relationship_pace .8,')
     print('                 lifestyle -.25, conversations .5   (sum 1.30)')
-    src = open('/root/hackathon/The-Sequential-Matching-Problem/kit.py').read()
+    src = open(_bootstrap.KIT_DIR / 'kit.py').read()
     body = src[src.index('def _prob'):src.index('def advance')]
     unused_here = [k for k in UNUSED if k in body]
     print('  UNUSED soft fields appear in _prob: %s -> %s'

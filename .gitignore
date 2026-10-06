@@ -19,3 +19,5 @@ secrets/
 results/**/raw/
 *.log
 __pycache__/
+# Kaggle kernel working dir (regenerate with ./build_kaggle_bundle.sh)
+kaggle-kernel/

@@ -5,9 +5,8 @@ import random
 import statistics
 import sys
 
-sys.path.insert(0, '/root/hackathon/The-Sequential-Matching-Problem')
-sys.path.insert(0, '/root/hackathon/analysis')
 
+import _bootstrap  # noqa: F401  (sets sys.path portably)
 from kit import Simulator, generate, eligibility, HARD, baseline_asks, baseline_match
 from prob_model import p_msmi_truth, fit_term, e_shared_prod, sigmoid, _truth_feasible
 from ceiling import matchable

@@ -10,9 +10,8 @@ import math
 import statistics
 import sys
 
-sys.path.insert(0, '/root/hackathon/The-Sequential-Matching-Problem')
-sys.path.insert(0, '/root/hackathon/analysis')
 
+import _bootstrap  # noqa: F401  (sets sys.path portably)
 from kit import generate, HARD
 from prob_model import _truth_feasible, p_msmi_truth, greedy_match
 from ceiling import matchable
