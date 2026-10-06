@@ -21,3 +21,6 @@ results/**/raw/
 __pycache__/
 # Kaggle kernel working dir (regenerate with ./build_kaggle_bundle.sh)
 kaggle-kernel/
+
+# Raw kaggle output downloads (curated copies live in research/results/)
+kaggle-out/
