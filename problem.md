@@ -256,6 +256,13 @@ by fit is only about **1.4×**, because:
 - ~98.5% of every introduction dies for reasons outside the policy's control,
   including a 3-day answer window that discards 64% of otherwise-perfect outcomes.
 
-The `greedy` baseline is already at **~89% of the achievable ceiling**. This is a
-1.3–1.6× problem, not a 5× one. See [`README.md`](README.md) §2 for the full
-accounting.
+The `greedy` baseline is already at **81–98% of the achievable ceiling** (and
+`sparse` is essentially saturated at 98%). This is a **1.3–1.6× problem, not a 5×
+one**. See [`README.md`](README.md) §2 for the full accounting.
+
+We also tested the obvious "just optimise the 4 weights globally" idea — see
+[`research/RESEARCH_NOTE.md`](research/RESEARCH_NOTE.md) §5.1. It fails for a
+structural reason, not a compute one: the entire range a global optimiser could
+exploit (0.132 in primary score) is *smaller than the noise on a single run*
+(0.356), so its selection step would be optimising noise. Fitting those 4
+parameters by maximum likelihood on revealed responses is the right tool.

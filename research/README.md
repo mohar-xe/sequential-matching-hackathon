@@ -214,24 +214,29 @@ intuition, which is the most natural thing to try, is a dead end here.
 
 Because repeat pairs are forbidden, **every legal pair can be used at most once**.
 So the total number of introductions is bounded by the number of legal pairs that
-exist among *reachable* people:
+exist among *reachable* people. We also computed what a **perfect 8-round
+scheduler** could realise, by repeatedly peeling maximum matchings:
 
-| world | reachable legal pairs (edges) | largest single-day matching | supplied greedy achieves |
-|---|---|---|---|
-| development | **103.1** | 34.5 | ~92 |
-| cold_start | 90.5 | 31.8 | ~78 |
-| sparse | **20.9** | 14.8 | ~23 (⚠ see §6.1) |
+| family | matchable / 200 | \|E\| reachable | best 8-round schedule | supplied greedy achieves | **volume headroom** |
+|---|---|---|---|---|---|
+| development | 133.4 | 103.1 | 99.8 (97% of \|E\|) | 81.0 | **~23%** |
+| cold_start | 120.0 | 90.5 | 89.2 (99%) | 73.7 | **~21%** |
+| sparse | 131.2 | 20.9 | 20.9 (100%) | 20.4 | **~2%** |
 
-Greedy is at **~89% of the theoretical ceiling** in development. There is not a
-5× win hiding here. There is a **~1.13× volume win**, and then the quality lever
-on top of it.
+**The baseline is already at 81–98% of the schedulable ceiling**, and `sparse` is
+essentially saturated. So volume is *not* where a 5× win lives. There is roughly a
+20% volume opening in `development` and `cold_start`, and essentially none in
+`sparse`.
 
-And here's the subtle sting: because greedy already uses *almost every* legal
-edge, **re-ordering them by desirability barely helps**. If you use all 103 edges
-in some order, the total score is the same — the sum doesn't care about the order.
-Ordering only pays if you use *fewer but better*, and the bottom 11% of edges are
-worth almost nothing (probability ~0.0003 each), so dropping them saves nothing
-either.
+Caveat on the greedy figures: they move noticeably between seed samples — 81.0
+introductions on seeds 41–60 versus 91.6 on seeds 101–112. Treat "81–92 of ~99.8"
+as the honest range rather than a point estimate.
+
+And here's the subtle sting: because greedy already uses most of the legal edges,
+**re-ordering them by desirability barely helps**. If you use all the edges in
+some order, the total score is the same — a sum doesn't care about order. Ordering
+only pays if you use *fewer but better*, and the bottom decile of edges is worth
+almost nothing (probability ~0.0003 each), so dropping them saves nothing either.
 
 > **First-principles takeaway:** this problem is structurally *saturated* in the
 > baseline. Any honest estimate of achievable improvement has to be modest, and
@@ -322,8 +327,10 @@ window. Verified by reading the generator, not assumed.
 > *soft-field agreement*. A policy that (i) maximises legal-edge realisation via
 > fast, well-targeted constraint clarification, and (ii) buys the four decision-relevant
 > soft fields and ranks by fit marginalised over what remains unknown, will beat the
-> supplied baseline by roughly **1.3–1.6×**, with essentially all of the gain coming
-> from the `sparse` and `cold_start` worlds.
+> supplied baseline by roughly **1.3–1.6×**. The volume component of the gain is
+> concentrated in `development` and `cold_start` (~20% each); `sparse` is already
+> saturated at 98% of its ceiling. The quality component is largest on `shift`,
+> where the greedy baseline's unweighted soft-field count is near worst-case.
 
 > **Secondary hypothesis.** Learning the four fit weights online from revealed
 > directional responses recovers most of the `shift` family's advantage, without
@@ -422,21 +429,34 @@ calculation integrates over the shared shock.
 
 # Part 6 — What we measured, and what we got wrong
 
-## 6.1 Open inconsistencies (must be resolved before we publish numbers)
+## 6.1 Open inconsistencies — one resolved, one unexplained
 
-We are not going to paper over these.
+### ~~The `sparse` ceiling was self-inconsistent~~ **RESOLVED — it was our error**
 
-1. **The `sparse` ceiling is self-inconsistent.** We computed 20.9 reachable legal
-   edges, but the baseline realises ~22.6 introductions per episode there — more
-   edges than should exist. One of the two numbers is wrong.
-   `analysis/consistency.py` was written to localise it (it checks whether assigned
-   pairs are a subset of the reachable set) but was never run. **Until it runs, do
-   not publish a `sparse` ceiling.**
-2. **Our aggregate model under-predicts MSMI by about 2×** (predicted ~0.56 total
-   across the reachable edges; observed ~1.0–1.2), even though it is correct on
-   single-pair replay against the simulator. Unexplained. It doesn't affect
-   *rankings*, which is what actually drives the score, but it means the absolute
-   ceiling in §2.6 is understated.
+We reported `|E| = 20.9` reachable legal pairs in `sparse` while the baseline
+appeared to realise ~22.6 introductions there — more edges than could exist. The
+direct check has now run (`analysis/consistency.py`, executed on Kaggle):
+
+| family | \|E\| reachable | baseline assigns | assigned but unreachable | assigned but not even truth-feasible |
+|---|---|---|---|---|
+| development | 103.1 | 81.0 | **0** | **0** |
+| sparse | 20.9 | 20.4 | **0** | **0** |
+| cold_start | 90.5 | 73.7 | **0** | **0** |
+
+Every assigned pair is inside the reachable set. **The ceiling was correct all
+along.** The apparent contradiction was an arithmetic mistake on our side: we
+compared `|E|` measured on seeds 41–60 against an `assign_per_100` figure from a
+*different* seed set (101–112) and multiplied by 2 to convert. Same seeds, same
+run: sparse assigns 20.4 of 20.9 edges, i.e. **98% of the ceiling**.
+
+### Still unexplained: the aggregate model under-predicts MSMI ~2×
+
+Our closed-form `P(MSMI)` predicts ~0.56 summed over the reachable edges;
+observed is ~1.0–1.2, even though the same model is correct on single-pair
+replay against the simulator (empirical 0.0121 vs model 0.0155, CI contains it).
+It does not affect *rankings*, which is what drives the score, but it means the
+absolute ceiling figures in §2.6 are understated. Worth chasing before we quote
+absolute numbers in the final report.
 
 ## 6.2 Current experimental standing
 

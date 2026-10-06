@@ -150,12 +150,16 @@ needs it in *both* directions. `age` rejects 26% because each member accepts onl
 `analysis/ceiling.py` then restricts to the **reachable** set — members with no
 declined hard field — and computes the feasible graph on truth:
 
-| family | matchable / 200 | \|E\| reachable | max matching | max degree |
-|---|---|---|---|---|
-| development | 133.4 | 103.1 | 34.5 | 10.9 |
-| sparse | 131.2 | 20.9 | 14.8 | 3.1 |
-| cold_start | 120.0 | 90.5 | 31.8 | 10.3 |
-| delayed / shift / drift | 133.4 | 103.1 | 34.5 | 10.9 |
+| family | matchable / 200 | \|E\| reachable | max matching | max degree | best 8-round schedule |
+|---|---|---|---|---|---|
+| development | 133.4 | 103.1 | 34.5 | 10.9 | 99.8 (97%) |
+| sparse | 131.2 | 20.9 | 14.7 | 3.1 | 20.9 (100%) |
+| cold_start | 120.0 | 90.5 | 31.8 | 10.3 | 89.2 (99%) |
+| delayed / shift / drift | 133.4 | 103.1 | 34.5 | 10.9 | 99.8 (97%) |
+
+Verified by `analysis/consistency.py`: across all three families the number of
+assigned pairs that fall *outside* the reachable set is exactly **0**, as is the
+number that are not even truth-feasible. The ceiling is a true upper bound.
 
 `delayed`, `shift` and `drift` are **structurally identical** to `development` —
 they differ only in outcome parameters, so `|E|` is literally unchanged.
@@ -220,6 +224,55 @@ in the range 0.2–1.0 and why single-episode MSMI is ~1 event.
 | development | 0.0012 / 0.0031 / 0.0076 / 0.0172 | 1.38× (fit only) → 1.48× (+ response rate) |
 | sparse | 0.0010 / 0.0027 / 0.0065 / 0.0160 | 1.44× → 1.56× |
 | cold_start | 0.0013 / 0.0035 / 0.0081 / 0.0190 | 1.19× → 1.22× |
+
+### 5.1 Would a global optimiser help? No — measured, not assumed
+
+Differential Evolution is the natural thing to reach for when you have a small
+continuous parameter vector and an expensive black-box objective. The four fit
+weights are exactly that: 4 continuous parameters, scalar fitness (the primary
+score), no gradients. So it is worth testing rather than dismissing.
+
+`analysis/de_feasibility.py`, run on Kaggle (4 cores, 288 episodes, 1143 s;
+full log in [`results/kaggle_de_feasibility.log`](results/kaggle_de_feasibility.log)):
+
+| measurement | value |
+|---|---|
+| cost of one episode | 3.97 s (4 cores) |
+| cost of one fitness evaluation (12 seeds × 6 families) | 285.9 s ≈ 4.8 min |
+| DE budget, population 50 × 100 generations | 5000 evals = **132–265 h** |
+| achievable range of the weight space (4 vectors) | **0.132** primary score |
+| paired standard deviation of a single seed-family run | **0.356** |
+| unpaired SE / paired SE (common random numbers) | 0.0730 / 0.0442 (**1.7× reduction**) |
+| paired runs needed to detect a +0.02 effect at 95% | **1353** (226 full evaluations) |
+
+**The verdict is decisive, and it is a structural argument, not a compute one.**
+The entire range that DE could possibly exploit (0.132) is *smaller than the noise
+on one run* (0.356). Its selection step — replace a parent when the trial vector
+scores better — would be operating almost entirely on noise, which is the standard
+way black-box optimisers manufacture an apparent improvement that does not
+transfer. The measured per-family scores show this directly: a **deliberately
+sign-flipped** weight vector (all four weights negative, `scrambled`) scores
+**0.410**, against **0.424** for the correct shifted-world weights and 0.340 for the
+correct development weights. If reversing every sign costs nothing, the landscape
+is not being identified.
+
+Two secondary findings:
+
+- **Common random numbers are mandatory, not optional.** Evaluating all candidate
+  vectors on the *same* seeds cuts the standard error 1.7× (0.073 → 0.044). Any
+  credible tuning of these weights has to do this; comparing means on independent
+  seed sets throws away most of the available signal.
+- **Fitting 4 parameters on a fixed seed set is exactly the failure mode the PS
+  warns about** — §10 requires results "across multiple seeds … rather than only a
+  favourable run". With 4 free parameters, 5 folds, and noise larger than the
+  effect, cross-seed overfitting is close to guaranteed. The 20 private seeds are
+  what the assessment uses; tuning on the public ones does not transfer.
+
+**The correct tool for these 4 parameters is maximum likelihood on the revealed
+responses**, i.e. online logistic regression — it uses the gradient information DE
+throws away, needs no repeated simulator evaluation, and produces a *calibrated*
+quantity rather than a bare argmax. DE would return a worse answer to the same
+question, at ~130 h of compute, with a higher chance of not transferring.
 
 Three conclusions:
 
