@@ -303,8 +303,9 @@ largest, not in `development` where greedy is already near-saturated.**
   feasible pair needs both endpoints in the same ~17-member bucket *and* both
   cleared. Clarification should therefore be **zone-clustered**: clear whole
   zones rather than the whole pool, so cleared members concentrate inside the
-  dense sub-blocks. This is where the largest relative gain lives, because greedy
-  is furthest from `|E|` here.
+   dense sub-blocks. (Rev 2 correction: same-seed checks show greedy at ~99%
+   of `|E|` here, so sparse is saturated — zone-clustering is an efficiency
+   measure, not a volume opportunity. The volume headroom is in `cold_start`.)
 - **`cold_start`.** Only 20% of members are `complete` (vs 35%), so the
   clarification ramp is the bottleneck; `|E| = 90.5` vs 77.6 introductions
   realised. Buy constraints as early as possible — the 4-bundles/day cap binds
@@ -518,21 +519,20 @@ final report is therefore **the ceiling analysis itself**: it explains why the
 metric behaves as it does, which member of the team built the strongest claim in
 Round 1, and it makes the failure analysis interpretable.
 
-Two caveats I could not resolve before stopping, which should be checked first:
+Two caveats from the draft are now closed (see `ROUND1_SUBMISSION.md` Rev 2
+for the evidence; `prob_model.p_msmi_joint` for the corrected formula):
 
-1. **An apparent inconsistency in the `sparse` ceiling.** `analysis/ceiling.py`
-   reports `|E| = 20.9` for `sparse`, but the greedy baseline realises ~22.6
-   introductions per episode there — more edges than the ceiling allows. One of
-   the two is wrong. `analysis/consistency.py` was written to localise it (it
-   checks whether assigned pairs are a subset of the reachable truth-feasible set)
-   but was interrupted. Until it runs, **treat the `sparse` ceiling as unverified**;
-   the other five families are internally consistent.
-2. **The closed-form `P(MSMI)` under-predicts the aggregate by roughly 2×**
-   (Σ over 103 edges ≈ 0.56 predicted, versus ~1.0–1.2 observed), while being
-   correct on single-pair replay. The discrepancy is unexplained — possibly an
-   interaction between repeated world seeds and member latents, or an artefact of
-   the replay harness. It does not affect rankings (which is what matters for
-   ranking) but it does mean the absolute ceiling in §5 is understated.
+1. **The `sparse` ceiling "contradiction" was a seed-set mismatch.**
+   `|E| = 20.9` was measured on seeds 41–60 while greedy's ~22.6 was measured
+   on seeds 101–112. On identical seeds (101–112) `|E| = 22.8` vs 22.6
+   realised (99% saturated), and assigned ⊆ reachable was verified with 0
+   violations on seeds 101–103. Quote only same-seed ceiling pairs.
+2. **The "2× under-prediction" was a mislabelled aggregation, direction
+   flipped.** "0.56" is the single-batch matching sum, not Σ over all edges
+   (Σ_all ≈ 1.59, seeds 41–60). The factorized form over-predicts ~1.6×
+   because it charges one response product instead of two and factorizes the
+   shared shock across stages; the corrected joint gives Σ ≈ 1.07–1.15 vs
+   ~1.0 realised. Rankings unaffected under either form.
 
 ---
 
@@ -549,7 +549,7 @@ python3 why_cap.py         # feasibility cascade, daily density, clarification s
 python3 ceiling.py         # reachable edge set, |E|, max matching
 python3 value_spread.py    # P(MSMI) spread, realised lift
 python3 candidate.py       # policy v1 vs all three baselines, 6 families
-python3 consistency.py     # (unrun) assigned-vs-reachable subset check
+python3 consistency.py     # same-seed subset check now verified (0 violations, seeds 101-103)
 ```
 
 Environment note: the kit is standard-library only and `numpy`/`scipy`/`networkx`

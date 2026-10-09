@@ -83,6 +83,40 @@ def p_msmi_truth(ma, mb, day=0, variant='development', full=True):
     return r * p_acc * 0.78 * p_sec * 0.36
 
 
+def p_msmi_joint(ma, mb, day=0, variant='development'):
+    """Corrected oracle P(MSMI): joint expectation over the shared shock.
+
+    p_msmi_truth above factorizes as E[acc_a*acc_b] * E[sec_a*sec_b] and
+    charges only ONE response-rate product, but kit.py draws ONE `shared`
+    per pair driving BOTH stages, and requires a response in BOTH stages
+    (introduction_response AND second_meeting_intention each need
+    Bernoulli(response_rate)). The correct form is a single joint
+    expectation E_shared[acc_a*acc_b*sec_a*sec_b] times r1*r2*0.78*0.36,
+    where r1 = r2 = ra*rb. The factorized form over-predicts absolute
+    levels by ~1.4x (1/0.585 second-response miss, partly offset by a
+    ~1.2-1.3x shared-reuse boost); ranking is unaffected. Validated:
+    sum over reachable edges, seeds 41-42 development, old 1.55-1.61 vs
+    joint 1.07-1.15 (ratio ~0.70), against greedy realised ~1.0.
+    """
+    ta, tb = ma['truth'], mb['truth']
+    src_a, src_b = ta, tb
+    fit = fit_term(src_a, src_b, variant)
+    dr = drift(day, variant)
+    bias_a, bias_b = ma['bias'], mb['bias']
+    sb_a, sb_b = ma['second_bias'], mb['second_bias']
+    ga, gb = src_a.get('relationship_goal'), src_b.get('relationship_goal')
+    gterm = .4 * (1 if (ga is not None and gb is not None and ga == gb) else 0)
+    r1 = ma['response_rate'] * mb['response_rate']
+    tot = 0.0
+    for c, phi in _GRID:
+        s = 0.45 * c
+        tot += (phi * sigmoid(-.25 + bias_a + fit + dr + s)
+                * sigmoid(-.25 + bias_b + fit + dr + s)
+                * sigmoid(.15 + sb_a + gterm + s)
+                * sigmoid(.15 + sb_b + gterm + s))
+    return r1 * r1 * 0.78 * 0.36 * tot
+
+
 def p_both_respond(ma, mb):
     return ma['response_rate'] * mb['response_rate']
 
