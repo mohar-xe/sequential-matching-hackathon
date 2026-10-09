@@ -1,0 +1,235 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 4 0 R 5 0 R 6 0 R] /Count 4 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.27 841.89] /Resources << /Font << /F1 11 0 R /F2 12 0 R >> >> /Contents 7 0 R >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.27 841.89] /Resources << /Font << /F1 11 0 R /F2 12 0 R >> >> /Contents 8 0 R >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.27 841.89] /Resources << /Font << /F1 11 0 R /F2 12 0 R >> >> /Contents 9 0 R >>
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.27 841.89] /Resources << /Font << /F1 11 0 R /F2 12 0 R >> >> /Contents 10 0 R >>
+endobj
+7 0 obj
+<< /Length 4509 >>
+stream
+BT /F1 8 Tf 62.00 40.00 Td (Round 1 submission -- sequential-matching-hackathon @ 2b3d563  |  p. 1/4) Tj ET
+BT /F2 15.0 Tf 77.13 783.89 Td (Sequential Matching under Reciprocal Uncertainty:) Tj ET
+BT /F2 15.0 Tf 113.13 770.69 Td (Ceilings, Acquisition, and Exact Matching) Tj ET
+BT /F2 11.0 Tf 66.63 757.49 Td (Round 1 Research Submission -- Vouchsafe Sequential Matching Hackathon) Tj ET
+BT /F1 9.0 Tf 116.96 744.29 Td (Team mohar-xe  |  Kit release 1.0.0  |  9 October 2026  |  commit 2b3d563) Tj ET
+62.00 735.09 m 533.27 735.09 l S
+BT /F2 12.0 Tf 62.00 704.69 Td (Abstract) Tj ET
+BT /F1 10.0 Tf 62.00 691.49 Td (We study the Sequential Matching Hackathon: twice daily for 60 days) Tj ET
+BT /F1 10.0 Tf 62.00 678.29 Td (\(+40 follow-up\), a policy spends a 12-unit ask budget and proposes) Tj ET
+BT /F1 10.0 Tf 62.00 665.09 Td (disjoint feasible pairs to maximise mutual second-meeting intentions) Tj ET
+BT /F1 10.0 Tf 62.00 651.89 Td (\(MSMI\) per 100 arrived members, averaged over six scenario families.) Tj ET
+BT /F1 10.0 Tf 62.00 638.69 Td (Our contribution is measurement-first. Only 1.24% of pairs are) Tj ET
+BT /F1 10.0 Tf 62.00 625.49 Td (hard-feasible \(0.24% sparse\); one third of members can never be matched;) Tj ET
+BT /F1 10.0 Tf 62.00 612.29 Td (98.5% of every introduction is lost to mechanisms no policy controls,) Tj ET
+BT /F1 10.0 Tf 62.00 599.09 Td (above all a 3-day answer window discarding ~64% of successes. The only) Tj ET
+BT /F1 10.0 Tf 62.00 585.89 Td (reliable pair signal is agreement on 4 of 7 soft fields. The reachable) Tj ET
+BT /F1 10.0 Tf 62.00 572.69 Td (edge set caps introductions and greedy already realises 89-99% of the) Tj ET
+BT /F1 10.0 Tf 62.00 559.49 Td (corrected ceiling -- so this is an acquisition problem, not an RL) Tj ET
+BT /F1 10.0 Tf 62.00 546.29 Td (problem \(honest headroom ~1.3-1.6x\). Our stdlib-only policy climbs a) Tj ET
+BT /F1 10.0 Tf 62.00 533.09 Td (paired ladder 0.333 -> 0.514 \(directional; headline underpowered ~20x\).) Tj ET
+BT /F1 10.0 Tf 62.00 519.89 Td (Fixed-prior beats adaptive everywhere, as noise theory predicts.) Tj ET
+BT /F2 12.0 Tf 62.00 480.29 Td (1  Problem interpretation) Tj ET
+BT /F1 10.0 Tf 62.00 467.09 Td (Each of 60 days: \(i\) clarification asks costing <= 12 units \(hard bundle) Tj ET
+BT /F1 10.0 Tf 62.00 453.89 Td (= 3, one named soft field = 1; declined is permanent\), then \(ii\) a batch) Tj ET
+BT /F1 10.0 Tf 62.00 440.69 Td (of disjoint feasible pairs \(empty = wait\). Pairs must pass reciprocal) Tj ET
+BT /F1 10.0 Tf 62.00 427.49 Td (hard checks both ways \(age, gender, zones, smoking, children, structure,) Tj ET
+BT /F1 10.0 Tf 62.00 414.29 Td (schedule\), be unintroduced, with all hard fields known. Feedback matures) Tj ET
+BT /F1 10.0 Tf 62.00 401.09 Td (with delay; 40 follow-up days resolve outcomes. MSMI: both yes -> date) Tj ET
+BT /F1 10.0 Tf 62.00 387.89 Td (within 30d -> both second-yes within 3d of the date. Score: mean over 6) Tj ET
+BT /F1 10.0 Tf 62.00 374.69 Td (families x 20 seeds. Tiebreakers: coverage, mutual acceptances, lower) Tj ET
+BT /F1 10.0 Tf 62.00 361.49 Td (ask cost, lower inference time. JSON <= 1 MiB, 10 s/call, 2 cores,) Tj ET
+BT /F1 10.0 Tf 62.00 348.29 Td (offline; memory self-carried. Soft fields are static \(0/200 changed\);) Tj ET
+BT /F1 10.0 Tf 62.00 335.09 Td (only goal/pace/lifestyle/conversations enter the scorer \(0.70 / 0.40 /) Tj ET
+BT /F1 10.0 Tf 62.00 321.89 Td (0.25 / 0.20; shifted: 0.25 / 0.80 / -0.25 / 0.50\). The other three soft) Tj ET
+BT /F1 10.0 Tf 62.00 308.69 Td (fields are dead weight: never ask about them.) Tj ET
+BT /F2 12.0 Tf 62.00 269.09 Td (2  Hypothesis) Tj ET
+BT /F1 10.0 Tf 62.00 255.89 Td (A reciprocal pair scorer learned online from delayed/censored feedback,) Tj ET
+BT /F1 10.0 Tf 62.00 242.69 Td (with global max-weight allocation and VOI-ranked clarification, raises) Tj ET
+BT /F1 10.0 Tf 62.00 229.49 Td (MSMI/100 over greedy via \(i\) learned weights vs uniform soft-count,) Tj ET
+BT /F1 10.0 Tf 62.00 216.29 Td (\(ii\) global allocation vs greedy fill, \(iii\) soft acquisition vs none,) Tj ET
+BT /F1 10.0 Tf 62.00 203.09 Td (\(iv\) drift-aware sequencing. Full RL is rejected \(Learn2Match friction) Tj ET
+BT /F1 10.0 Tf 62.00 189.89 Td (result: it fails exactly when volume is saturated and the gap is) Tj ET
+BT /F1 10.0 Tf 62.00 176.69 Td (friction\). LLM scoring is rejected \(offline CPU; template conversations\).) Tj ET
+BT /F2 12.0 Tf 62.00 137.09 Td (3  Reciprocal feasibility: introductions are capped) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Length 3443 >>
+stream
+BT /F1 8 Tf 62.00 40.00 Td (Round 1 submission -- sequential-matching-hackathon @ 2b3d563  |  p. 2/4) Tj ET
+BT /F1 10.0 Tf 62.00 783.89 Td (First-failing-rule on truth: who_to_meet 57%, age 26%, geography) Tj ET
+BT /F1 10.0 Tf 62.00 770.69 Td (12% \(19% sparse\); rest ~4% combined. P\(matchable\) = 0.667 / 0.656 /) Tj ET
+BT /F1 10.0 Tf 62.00 757.49 Td (0.600 -- one third can never be matched. |E| is a hard ceiling \(no) Tj ET
+BT /F1 10.0 Tf 62.00 744.29 Td (repeats\). A sparse contradiction \(|E| = 20.9 vs 22.6 realised\) was a) Tj ET
+BT /F1 10.0 Tf 62.00 731.09 Td (seed-set mismatch: same seeds give |E| = 22.8 vs 22.6 \(99% saturated\),) Tj ET
+BT /F1 10.0 Tf 62.00 717.89 Td (assigned subset of reachable with 0 violations. Clarification is) Tj ET
+BT /F1 10.0 Tf 62.00 704.69 Td (supply-limited: 720 units vs ~80 askable members, exhausted by ~day 20.) Tj ET
+BT /F2 9.0 Tf 62.13 678.29 Td (Family) Tj ET
+BT /F2 9.0 Tf 212.13 665.09 Td (Match/200) Tj ET
+BT /F2 9.0 Tf 302.13 651.89 Td (|E|) Tj ET
+BT /F2 9.0 Tf 392.13 638.69 Td (MaxMatch) Tj ET
+BT /F2 9.0 Tf 462.13 625.49 Td (Greedy) Tj ET
+62.13 616.29 m 533.13 616.29 l S
+BT /F1 9.0 Tf 62.13 599.09 Td (development*) Tj ET
+BT /F1 9.0 Tf 277.12 585.89 Td (133.4) Tj ET
+BT /F1 9.0 Tf 367.12 572.69 Td (103.1) Tj ET
+BT /F1 9.0 Tf 442.12 559.49 Td (34.5) Tj ET
+BT /F1 9.0 Tf 488.10 546.29 Td (~92 \(89%\)) Tj ET
+BT /F1 9.0 Tf 62.13 533.09 Td (sparse) Tj ET
+BT /F1 9.0 Tf 277.12 519.89 Td (131.2) Tj ET
+BT /F1 9.0 Tf 347.10 506.69 Td (20.9-22.8) Tj ET
+BT /F1 9.0 Tf 442.12 493.49 Td (14.7) Tj ET
+BT /F1 9.0 Tf 493.10 480.29 Td (~99% \(*\)) Tj ET
+BT /F1 9.0 Tf 62.13 467.09 Td (cold_start) Tj ET
+BT /F1 9.0 Tf 277.12 453.89 Td (120.0) Tj ET
+BT /F1 9.0 Tf 372.12 440.69 Td (90.5) Tj ET
+BT /F1 9.0 Tf 442.12 427.49 Td (31.8) Tj ET
+BT /F1 9.0 Tf 483.09 414.29 Td (77.6 \(86%\)) Tj ET
+BT /F1 10.0 Tf 62.00 387.89 Td (* +delayed/shift/drift \(structurally identical\). \(*\) same-seed comparison.) Tj ET
+BT /F2 12.0 Tf 62.00 348.29 Td (4  Probability analysis \(ranking only\)) Tj ET
+BT /F1 10.0 Tf 62.00 335.09 Td (Per pair: one shared shock s ~ N\(0, 0.45^2\); per direction accept ~) Tj ET
+BT /F1 10.0 Tf 62.00 321.89 Td (Bern\(sigma\(-0.25 + bias + fit + s + drift\)\), respond ~ Bern\(rate\); date) Tj ET
+BT /F1 10.0 Tf 62.00 308.69 Td (w.p. 0.78; second yes sigma\(0.15 + sbias + s + 0.4[goal match]\).) Tj ET
+BT /F1 10.0 Tf 62.00 295.49 Td (Directions correlate \(rho ~ 0.43\): integrate over s \(error < 5e-6\),) Tj ET
+BT /F1 10.0 Tf 62.00 282.29 Td (never multiply marginals. Replay validates ranking \(top decile 0.041) Tj ET
+BT /F1 10.0 Tf 62.00 269.09 Td (pred / 0.033 emp vs bottom 0.002 / 0.000\). Funnel \(greedy, dev.\): 91.6) Tj ET
+BT /F1 10.0 Tf 62.00 255.89 Td (-> 52.0 respond \(57%\) -> 12.6 mutual \(24%, controllable\) -> 10.3 dates) Tj ET
+BT /F1 10.0 Tf 62.00 242.69 Td (-> 3.7 second-yes -> 1.3 in-window -> ~1.0 MSMI. The 3-day window alone) Tj ET
+BT /F1 10.0 Tf 62.00 229.49 Td (destroys ~64%. Corrected joint \(one E over s of all four sigmoids, both) Tj ET
+BT /F1 10.0 Tf 62.00 216.29 Td (response stages\): sum ~1.07-1.15 vs ~1.0 realised -- greedy at 87-93%) Tj ET
+BT /F1 10.0 Tf 62.00 203.09 Td (of ceiling. Top/bottom-half lift 1.38x \(fit\) -> 1.48x \(+oracle rate\).) Tj ET
+BT /F1 10.0 Tf 62.00 189.89 Td (DE weight search ruled out: range 0.132 < noise 0.356. Common random) Tj ET
+BT /F1 10.0 Tf 62.00 176.69 Td (numbers cut SE 1.7x and are mandatory.) Tj ET
+endstream
+endobj
+9 0 obj
+<< /Length 3992 >>
+stream
+BT /F1 8 Tf 62.00 40.00 Td (Round 1 submission -- sequential-matching-hackathon @ 2b3d563  |  p. 3/4) Tj ET
+BT /F2 12.0 Tf 62.00 770.69 Td (5  Proposed policy \(implemented, stdlib-only\)) Tj ET
+BT /F1 10.0 Tf 62.00 757.49 Td (  \(a\) Acquisition, matchability-gated: v1 wasted 183/384 soft asks) Tj ET
+BT /F1 10.0 Tf 62.00 744.29 Td (  \(47.7%\) on unmatchable members -- now gated. Zone-clustered hard) Tj ET
+BT /F1 10.0 Tf 62.00 731.09 Td (- clearance first; leftover on 4 live fields in tiers T0 \(feasible pair\)) Tj ET
+BT /F1 10.0 Tf 62.00 717.89 Td (- -> T1 \(cleared\) -> T2 \(uncleared\), by |w_k|. Adaptive bar.) Tj ET
+BT /F1 10.0 Tf 62.00 704.69 Td (  \(b\) Value model: observed: +w_k if equal else -w_k/2; unknown:) Tj ET
+BT /F1 10.0 Tf 62.00 691.49 Td (- E = w_k*\(1.5/|S_k| - 0.5\) under uniform prior \(exact; kills the) Tj ET
+BT /F1 10.0 Tf 62.00 678.29 Td (- None-equals-None artefact\).) Tj ET
+BT /F1 10.0 Tf 62.00 665.09 Td (  \(c\) Weights: single-pass streaming logistic on matured responses) Tj ET
+BT /F1 10.0 Tf 62.00 651.89 Td (  \(v1 re-fed events ~55x -- fixed\); eta = 0.25/sqrt\(1+n\), anchor 0.10) Tj ET
+BT /F1 10.0 Tf 62.00 638.69 Td (- to dev prior, clip 1.0. Synthetic check: pace 0.83 vs true 0.80.) Tj ET
+BT /F1 10.0 Tf 62.00 625.49 Td (  \(d\) Allocation: exact general-graph MWM \(branch-and-bound, warm start\):) Tj ET
+BT /F1 10.0 Tf 62.00 612.29 Td (- 268/268 fuzz-optimal vs brute force, < 1 ms/day. Graph is) Tj ET
+BT /F1 10.0 Tf 62.00 599.09 Td (- non-bipartite \(~47% same-gender acceptance\).) Tj ET
+BT /F2 12.0 Tf 62.00 559.49 Td (6  Missing and delayed data) Tj ET
+BT /F1 10.0 Tf 62.00 546.29 Td (Declined != not-asked \(permanent, never bought\). Missing responses are) Tj ET
+BT /F1 10.0 Tf 62.00 533.09 Td (censored, never imputed; only matured outcomes update; pending queue by) Tj ET
+BT /F1 10.0 Tf 62.00 519.89 Td (expected observation day. Assignment-day snapshots \(no leakage; static) Tj ET
+BT /F1 10.0 Tf 62.00 506.69 Td (fields remove staleness\). No IPS \(propensity null; pool splits only;) Tj ET
+BT /F1 10.0 Tf 62.00 493.49 Td (same-seed simulator comparisons\). Memory ~10 KB. Thompson sampling over) Tj ET
+BT /F1 10.0 Tf 62.00 480.29 Td (pool priors; rank-only decisions; posterior-predictive coverage check as) Tj ET
+BT /F1 10.0 Tf 62.00 467.09 Td (wrong-belief detector.) Tj ET
+BT /F2 12.0 Tf 62.00 427.49 Td (7  Evaluation) Tj ET
+BT /F1 10.0 Tf 62.00 414.29 Td (Baselines \(identical seeds, all families\): greedy, no-clarification,) Tj ET
+BT /F1 10.0 Tf 62.00 401.09 Td (random-feasible. Ablations: no soft acquisition; fixed vs online weights;) Tj ET
+BT /F1 10.0 Tf 62.00 387.89 Td (greedy-fill vs MWM; no drift scheduling; bandit off; theta sweep.) Tj ET
+BT /F1 10.0 Tf 62.00 374.69 Td (Measured ladder \(seeds 101-106, paired\):) Tj ET
+BT /F2 9.0 Tf 62.13 348.29 Td (Configuration) Tj ET
+BT /F2 9.0 Tf 283.13 335.09 Td (MSMI/100) Tj ET
+BT /F2 9.0 Tf 363.13 321.89 Td (vs greedy) Tj ET
+BT /F2 9.0 Tf 443.13 308.69 Td (Mutual) Tj ET
+62.13 299.49 m 533.13 299.49 l S
+BT /F1 9.0 Tf 62.13 282.29 Td (Organiser greedy) Tj ET
+BT /F1 9.0 Tf 338.12 269.09 Td (0.333) Tj ET
+BT /F1 9.0 Tf 433.13 255.89 Td (--) Tj ET
+BT /F1 9.0 Tf 508.12 242.69 Td (10.14) Tj ET
+BT /F1 9.0 Tf 62.13 229.49 Td (Candidate v1) Tj ET
+BT /F1 9.0 Tf 338.12 216.29 Td (0.347) Tj ET
+BT /F1 9.0 Tf 418.12 203.09 Td (+4.2%) Tj ET
+BT /F1 9.0 Tf 508.12 189.89 Td (10.56) Tj ET
+BT /F1 9.0 Tf 62.13 176.69 Td (VOI ask + greedy match) Tj ET
+BT /F1 9.0 Tf 338.12 163.49 Td (0.389) Tj ET
+BT /F1 9.0 Tf 413.11 150.29 Td (+16.7%) Tj ET
+BT /F1 9.0 Tf 508.12 137.09 Td (10.50) Tj ET
+BT /F1 9.0 Tf 62.13 123.89 Td (Full \(VOI+MWM+adaptive\)) Tj ET
+BT /F1 9.0 Tf 338.12 110.69 Td (0.444) Tj ET
+BT /F1 9.0 Tf 413.11 97.49 Td (+33.3%) Tj ET
+BT /F1 9.0 Tf 508.12 84.29 Td (10.81) Tj ET
+BT /F1 9.0 Tf 62.13 71.09 Td (Full \(VOI+MWM+fixed\)) Tj ET
+BT /F1 9.0 Tf 338.12 57.89 Td (0.514) Tj ET
+BT /F1 9.0 Tf 413.11 44.69 Td (+54.2%) Tj ET
+BT /F1 9.0 Tf 508.12 31.49 Td (11.20) Tj ET
+endstream
+endobj
+10 0 obj
+<< /Length 3046 >>
+stream
+BT /F1 8 Tf 62.00 40.00 Td (Round 1 submission -- sequential-matching-hackathon @ 2b3d563  |  p. 4/4) Tj ET
+BT /F1 10.0 Tf 62.00 783.89 Td (Honest reading: min detectable ~0.175 at n = 36, so only the fixed) Tj ET
+BT /F1 10.0 Tf 62.00 770.69 Td (headline reaches it; per-variant cells \(n = 6\) are illustrative. Ladder) Tj ET
+BT /F1 10.0 Tf 62.00 757.49 Td (is monotone, mutual +10%, and fixed beats adaptive even in shift \(0.500) Tj ET
+BT /F1 10.0 Tf 62.00 744.29 Td (vs 0.417\) -- as noise theory predicts \(~50 trials cannot carry 4) Tj ET
+BT /F1 10.0 Tf 62.00 731.09 Td (weights\). Cost note: we spend ~409 vs ~198 ask units \(tiebreaker loss;) Tj ET
+BT /F1 10.0 Tf 62.00 717.89 Td (Round 2: cost-capped ablation\). Harness smoke test \(seed 101, dev.\):) Tj ET
+BT /F1 10.0 Tf 62.00 704.69 Td (greedy msmi = 1 -> team msmi = 3, both valid, 0.15 s/call.) Tj ET
+BT /F2 12.0 Tf 62.00 665.09 Td (8  Failure cases and limitations) Tj ET
+BT /F1 10.0 Tf 62.00 651.89 Td (- Withheld answers \(~1/3 unmatchable, kept in denominators\); saturated) Tj ET
+BT /F1 10.0 Tf 62.00 638.69 Td (- sparse supply; 8-day-busy coupling \(hence global matching\);) Tj ET
+BT /F1 10.0 Tf 62.00 625.49 Td (- right-censoring \(day-55 intros resolve ~day 77, unseen by policy\).) Tj ET
+BT /F1 10.0 Tf 62.00 612.29 Td (- All outcomes synthetic -- no evidence about real relationships. Kit) Tj ET
+BT /F1 10.0 Tf 62.00 599.09 Td (- vendored verbatim \(pin a8e26b3, MIT + synthetic-data licence\); our) Tj ET
+BT /F1 10.0 Tf 62.00 585.89 Td (- work in research/; branch merged with history kept, policy moved out) Tj ET
+BT /F1 10.0 Tf 62.00 572.69 Td (- of the kit subtree. Reproduce: unittest \(22 OK\) + verify_data.py, then) Tj ET
+BT /F1 10.0 Tf 62.00 559.49 Td (- analysis/{prob_model,validate_model,why_cap,ceiling,value_spread,) Tj ET
+BT /F1 10.0 Tf 62.00 546.29 Td (- candidate,verify_team_policy,team_policy_eval}.py.) Tj ET
+BT /F2 12.0 Tf 62.00 506.69 Td (References) Tj ET
+BT /F1 10.0 Tf 62.00 493.49 Td ([1] Zong et al. Learn to Match. arXiv:2606.06744. [2] Li, Wang & Kong,) Tj ET
+BT /F1 10.0 Tf 62.00 480.29 Td (Bandit Learning in Matching Markets survey, IJCAI 2025 \(Liu-Mania-) Tj ET
+BT /F1 10.0 Tf 62.00 467.09 Td (Jordan; Basu; Athanasopoulos et al. UAI 2026\). [3] Udwani, non-adaptive) Tj ET
+BT /F1 10.0 Tf 62.00 453.89 Td (greedy 1/2-competitive, arXiv:2403.18059. [4] Saar-Tsechansky et al.,) Tj ET
+BT /F1 10.0 Tf 62.00 440.69 Td (Active Feature-Value Acquisition, Mgmt Sci 2009; Ma et al., NeurIPS) Tj ET
+BT /F1 10.0 Tf 62.00 427.49 Td (2023. [5] Thompson \(1933\); Russo et al. \(2018\); Agarwal & Goyal \(2013\);) Tj ET
+BT /F1 10.0 Tf 62.00 414.29 Td (Garivier & Moulines \(2011\); Joulani et al. \(2013\); Lakkaraju et al.) Tj ET
+BT /F1 10.0 Tf 62.00 401.09 Td (\(2017\); Das & Kamenica \(2005\); Howard \(1966\). [6] Hayashi et al., OPE) Tj ET
+BT /F1 10.0 Tf 62.00 387.89 Td (for matching markets, RecSys 2025. [7] Segal-Halevi \(2011\); Drummond &) Tj ET
+BT /F1 10.0 Tf 62.00 374.69 Td (Boutilier, IJCAI 2013; Blum et al., OR 68\(2\) 2020.) Tj ET
+endstream
+endobj
+11 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+12 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+xref
+0 13
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000133 00000 n 
+0000000277 00000 n 
+0000000421 00000 n 
+0000000565 00000 n 
+0000000710 00000 n 
+0000005271 00000 n 
+0000008766 00000 n 
+0000012810 00000 n 
+0000015909 00000 n 
+0000016007 00000 n 
+trailer
+<< /Size 13 /Root 1 0 R >>
+startxref
+16110
+%%EOF
