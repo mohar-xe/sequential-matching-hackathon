@@ -9,7 +9,6 @@ from pathlib import Path
 from xml.sax.saxutils import escape
 
 HERE = Path(__file__).resolve().parent
-HASH = "7d6546c"
 BODY_FONT = "Liberation Serif"
 HEAD_FONT = "Liberation Sans"
 MONO_FONT = "Liberation Mono"
@@ -48,7 +47,7 @@ doc = []
 doc.append(para("P_Title", [run("Sequential Matching under Reciprocal Uncertainty:")]))
 doc.append(para("P_Title2", [run("Ceilings, Acquisition, and Exact Matching")]))
 doc.append(para("P_Sub", [run("Round 1 Research Submission \u2014 Vouchsafe Sequential Matching Hackathon")]))
-doc.append(para("P_Auth", [run("Team mohar-xe \u2014 Kit release 1.0.0 \u2014 9 October 2026 \u2014 built from " + HASH)]))
+doc.append(para("P_Auth", [run("Enigmatic Cats \u2014 Kit release 1.0.0 \u2014 9 October 2026")]))
 doc.append(para("P_Rule", [run("")]))
 doc.append(para("P_AbHead", [run("Abstract")]))
 doc.append(P("P_Abstract",
@@ -326,7 +325,7 @@ STYLES_XML = """<?xml version="1.0" encoding="UTF-8"?>
 </office:automatic-styles>
 <office:master-styles>
 <style:master-page style:name="MP" style:page-layout-name="PL"><style:footer>
-<text:p text:style-name="P_Foot">Round 1 submission \u2014 built from HASHLEFT <text:tab/>Page <text:page-number text:select-page="current">1</text:page-number></text:p>
+<text:p text:style-name="P_Foot">Round 1 submission \u2014 Enigmatic Cats <text:tab/>Page <text:page-number text:select-page="current">1</text:page-number></text:p>
 </style:footer></style:master-page>
 </office:master-styles>
 </office:document-styles>
@@ -334,7 +333,7 @@ STYLES_XML = """<?xml version="1.0" encoding="UTF-8"?>
 
 META_XML = """<?xml version="1.0" encoding="UTF-8"?>
 <office:document-meta xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:dc="http://purl.org/dc/elements/1.1/" office:version="1.2">
-<office:meta><dc:title>Sequential Matching under Reciprocal Uncertainty: Ceilings, Acquisition, and Exact Matching</dc:title><dc:creator>mohar-xe</dc:creator><meta:creation-date>2026-10-09T00:00:00</meta:creation-date></office:meta>
+<office:meta><dc:title>Sequential Matching under Reciprocal Uncertainty: Ceilings, Acquisition, and Exact Matching</dc:title><dc:creator>Enigmatic Cats</dc:creator><meta:creation-date>2026-10-09T00:00:00</meta:creation-date></office:meta>
 </office:document-meta>
 """
 
@@ -361,7 +360,7 @@ def build():
             continue
         body.append(item)
     content = CONTENT_TMPL.replace("COLSTYLES", "".join(colstyles)).replace("BODY", "".join(body))
-    styles = STYLES_XML.replace("HASHLEFT", HASH)
+    styles = STYLES_XML
     out = HERE / "R1_SUBMISSION.odt"
     with zipfile.ZipFile(out, "w") as z:
         z.writestr("mimetype", "application/vnd.oasis.opendocument.text", compress_type=zipfile.ZIP_STORED)
