@@ -20,12 +20,19 @@ import itertools
 import random
 import subprocess
 import sys
+from pathlib import Path
 
 import _bootstrap  # noqa: F401  (sets sys.path portably)
 
 
 def load_team_policy(path=None):
     if path is None:
+        # Prefer the merged working-tree copy next to this script ...
+        here = Path(__file__).resolve().parent / 'team_policy.py'
+        if here.is_file():
+            path = str(here)
+    if path is None:
+        # ... falling back to the pre-merge branch ref.
         raw = subprocess.run(
             ['git', 'show',
              'team-policy-experiment:The-Sequential-Matching-Problem/team_policy.py'],

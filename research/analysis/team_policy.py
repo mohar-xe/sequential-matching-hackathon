@@ -14,6 +14,7 @@ import math
 import sys
 from pathlib import Path
 
+import _bootstrap  # noqa: F401  (portable kit import: repo layout or flat bundle)
 from kit import HARD, SOFT, OPTIONS, eligibility
 
 # Key soft fields affecting reciprocal mutual attraction

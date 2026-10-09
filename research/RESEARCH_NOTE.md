@@ -538,7 +538,7 @@ for the evidence; `prob_model.p_msmi_joint` for the corrected formula):
 
 ## 12. Implementation update: Value-of-Information acquisition, general-graph MWM, and experimental validation
 
-Following the structural analysis in §§1–11, we implemented, instrumented, and evaluated a complete candidate policy (`The-Sequential-Matching-Problem/team_policy.py`) conforming to `POLICY_INTERFACE.md`. This update documents the algorithmic refinements, diagnostic findings, ablation benchmarks, and operational validation.
+Following the structural analysis in §§1–11, we implemented, instrumented, and evaluated a complete candidate policy (`research/analysis/team_policy.py` — relocated out of the vendored kit subtree after merge, kit kept byte-verbatim) conforming to `POLICY_INTERFACE.md`. This update documents the algorithmic refinements, diagnostic findings, ablation benchmarks, and operational validation.
 
 ### 12.1 Diagnosis: the 46% wasted soft-clarification leak
 

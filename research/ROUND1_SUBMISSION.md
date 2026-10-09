@@ -500,16 +500,16 @@ msmi=1 → team msmi=3, both valid, 0.15 s/call — replicated independently.
 - **No open blockers.** Both former caveats are closed above (same-seed
   subset checks, 0 violations; joint-probability correction with measured
   0.70 ratio). Neither affects rankings.
-- **Provenance / merge hygiene.** Oviya's code is on the unmerged
-  `team-policy-experiment` branch (kept out of main so the kit subtree stays
-  byte-verbatim for the freeze). Before Round 2 it must move out of
-  `The-Sequential-Matching-Problem/` (currently `team_policy.py`,
-  `test_team_policy.py`, and a 5-line dispatch hook in `policy.py` — additive,
-  baselines untouched) into our own tree. The two `scratch/` scripts cited in
-  the branch §12 were never committed; both findings they produced were
-  independently replicated here instead (waste 183/384 = 47.7%;
-  MWM 268/268 optimal). The branch's `policy_v2.py`/`experiment_v2.py`
-  (hardcoded local paths) are superseded iteration history, not cited.
+- **Provenance / merge hygiene.** Oviya's branch is merged (`db51aa1`,
+  history preserved, no rewrites) and the policy files relocated out of the
+  vendored subtree to `research/analysis/` (`team_policy.py`,
+  `test_team_policy.py`, `team_policy_eval.py`; the 5-line dispatch hook in
+  the kit's `policy.py` reverted — baselines untouched, kit byte-verbatim).
+  The two `scratch/` scripts cited in the branch §12 were never committed;
+  both findings were independently replicated (`verify_team_policy.py`:
+  waste 183/384 = 47.7%; MWM 268/268 optimal). The branch's
+  `policy_v2.py`/`experiment_v2.py` (hardcoded local paths) are superseded
+  iteration history, not cited.
 
 ---
 

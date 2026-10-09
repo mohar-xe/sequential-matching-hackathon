@@ -2,6 +2,7 @@
 import json
 import unittest
 
+import _bootstrap  # noqa: F401  (portable kit import)
 from kit import generate, Simulator, eligibility, HARD
 import team_policy
 

@@ -8,9 +8,6 @@ from kit import baseline_asks, baseline_match, eligibility
 
 
 def decide(request, mode='greedy'):
-    if mode in ('team', 'team_fixed', 'team_adaptive'):
-        import team_policy
-        return team_policy.decide(request, mode=mode)
     state = request['state']
     memory = request.get('memory') or {}
     if request['phase'] == 'ask':
@@ -35,7 +32,7 @@ def decide(request, mode='greedy'):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--baseline', choices=['greedy', 'no_asks', 'random', 'team', 'team_fixed', 'team_adaptive'], default='greedy')
+    parser.add_argument('--baseline', choices=['greedy', 'no_asks', 'random'], default='greedy')
     args = parser.parse_args()
     request = json.load(sys.stdin)
     print(json.dumps(decide(request, args.baseline), allow_nan=False))
