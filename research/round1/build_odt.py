@@ -9,7 +9,7 @@ from pathlib import Path
 from xml.sax.saxutils import escape
 
 HERE = Path(__file__).resolve().parent
-HASH = "b1e1b46"
+HASH = "7d6546c"
 BODY_FONT = "Liberation Serif"
 HEAD_FONT = "Liberation Sans"
 MONO_FONT = "Liberation Mono"
