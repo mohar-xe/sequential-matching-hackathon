@@ -22,6 +22,8 @@ results/**/raw/
 # comments, so this negation must be the whole line.)
 !research/results/*.log
 __pycache__/
+*.py[cod]
+.DS_Store
 # Kaggle kernel working dir (regenerate with ./build_kaggle_bundle.sh)
 kaggle-kernel/
 

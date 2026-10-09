@@ -1,7 +1,7 @@
 """Quick unit tests for CUSUM detector and StableWeights."""
 import sys, math
-sys.path.insert(0, r'C:\Users\Oviyazhini\sequential-matching-hackathon\research\analysis')
-sys.path.insert(0, r'C:\Users\Oviyazhini\sequential-matching-hackathon\The-Sequential-Matching-Problem')
+
+import _bootstrap  # noqa: F401  (portable kit import; replaces author-local paths)
 
 from policy_v2 import CUSUMDriftDetector, StableWeights, sigmoid, BASE_W
 

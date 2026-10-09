@@ -7,8 +7,7 @@ import math
 import statistics
 import sys
 
-sys.path.insert(0, r'C:\Users\Oviyazhini\sequential-matching-hackathon\research\analysis')
-sys.path.insert(0, r'C:\Users\Oviyazhini\sequential-matching-hackathon\The-Sequential-Matching-Problem')
+import _bootstrap  # noqa: F401  (portable kit import; replaces author-local paths)
 
 from kit import generate, baseline_asks, baseline_match
 from prob_model import run_episode
