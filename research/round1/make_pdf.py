@@ -18,7 +18,7 @@ TITLE = [
     ("t1", "Sequential Matching under Reciprocal Uncertainty:"),
     ("t1", "Ceilings, Acquisition, and Exact Matching"),
     ("t2", "Round 1 Research Submission -- Vouchsafe Sequential Matching Hackathon"),
-    ("t3", "Team mohar-xe  |  Kit release 1.0.0  |  9 October 2026  |  commit 2b3d563"),
+    ("t3", "Team mohar-xe  |  Kit release 1.0.0  |  9 October 2026  |  commit b1e1b46"),
 ]
 
 BLOCKS = []
@@ -306,7 +306,7 @@ def render(pages, out):
         # footer
         parts.append(
             "BT /F1 8 Tf %.2f %.2f Td (%s) Tj ET"
-            % (ML, MB - 22, esc("Round 1 submission -- sequential-matching-hackathon @ 2b3d563  |  p. %d/%d" % (i + 1, n_pages)))
+            % (ML, MB - 22, esc("Round 1 submission -- sequential-matching-hackathon @ b1e1b46  |  p. %d/%d" % (i + 1, n_pages)))
         )
         ln = 0
         for op in ops:

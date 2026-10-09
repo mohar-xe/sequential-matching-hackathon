@@ -20,11 +20,11 @@ endobj
 7 0 obj
 << /Length 4509 >>
 stream
-BT /F1 8 Tf 62.00 40.00 Td (Round 1 submission -- sequential-matching-hackathon @ 2b3d563  |  p. 1/4) Tj ET
+BT /F1 8 Tf 62.00 40.00 Td (Round 1 submission -- sequential-matching-hackathon @ b1e1b46  |  p. 1/4) Tj ET
 BT /F2 15.0 Tf 77.13 783.89 Td (Sequential Matching under Reciprocal Uncertainty:) Tj ET
 BT /F2 15.0 Tf 113.13 770.69 Td (Ceilings, Acquisition, and Exact Matching) Tj ET
 BT /F2 11.0 Tf 66.63 757.49 Td (Round 1 Research Submission -- Vouchsafe Sequential Matching Hackathon) Tj ET
-BT /F1 9.0 Tf 116.96 744.29 Td (Team mohar-xe  |  Kit release 1.0.0  |  9 October 2026  |  commit 2b3d563) Tj ET
+BT /F1 9.0 Tf 116.96 744.29 Td (Team mohar-xe  |  Kit release 1.0.0  |  9 October 2026  |  commit b1e1b46) Tj ET
 62.00 735.09 m 533.27 735.09 l S
 BT /F2 12.0 Tf 62.00 704.69 Td (Abstract) Tj ET
 BT /F1 10.0 Tf 62.00 691.49 Td (We study the Sequential Matching Hackathon: twice daily for 60 days) Tj ET
@@ -69,7 +69,7 @@ endobj
 8 0 obj
 << /Length 3443 >>
 stream
-BT /F1 8 Tf 62.00 40.00 Td (Round 1 submission -- sequential-matching-hackathon @ 2b3d563  |  p. 2/4) Tj ET
+BT /F1 8 Tf 62.00 40.00 Td (Round 1 submission -- sequential-matching-hackathon @ b1e1b46  |  p. 2/4) Tj ET
 BT /F1 10.0 Tf 62.00 783.89 Td (First-failing-rule on truth: who_to_meet 57%, age 26%, geography) Tj ET
 BT /F1 10.0 Tf 62.00 770.69 Td (12% \(19% sparse\); rest ~4% combined. P\(matchable\) = 0.667 / 0.656 /) Tj ET
 BT /F1 10.0 Tf 62.00 757.49 Td (0.600 -- one third can never be matched. |E| is a hard ceiling \(no) Tj ET
@@ -118,7 +118,7 @@ endobj
 9 0 obj
 << /Length 3992 >>
 stream
-BT /F1 8 Tf 62.00 40.00 Td (Round 1 submission -- sequential-matching-hackathon @ 2b3d563  |  p. 3/4) Tj ET
+BT /F1 8 Tf 62.00 40.00 Td (Round 1 submission -- sequential-matching-hackathon @ b1e1b46  |  p. 3/4) Tj ET
 BT /F2 12.0 Tf 62.00 770.69 Td (5  Proposed policy \(implemented, stdlib-only\)) Tj ET
 BT /F1 10.0 Tf 62.00 757.49 Td (  \(a\) Acquisition, matchability-gated: v1 wasted 183/384 soft asks) Tj ET
 BT /F1 10.0 Tf 62.00 744.29 Td (  \(47.7%\) on unmatchable members -- now gated. Zone-clustered hard) Tj ET
@@ -176,7 +176,7 @@ endobj
 10 0 obj
 << /Length 3046 >>
 stream
-BT /F1 8 Tf 62.00 40.00 Td (Round 1 submission -- sequential-matching-hackathon @ 2b3d563  |  p. 4/4) Tj ET
+BT /F1 8 Tf 62.00 40.00 Td (Round 1 submission -- sequential-matching-hackathon @ b1e1b46  |  p. 4/4) Tj ET
 BT /F1 10.0 Tf 62.00 783.89 Td (Honest reading: min detectable ~0.175 at n = 36, so only the fixed) Tj ET
 BT /F1 10.0 Tf 62.00 770.69 Td (headline reaches it; per-variant cells \(n = 6\) are illustrative. Ladder) Tj ET
 BT /F1 10.0 Tf 62.00 757.49 Td (is monotone, mutual +10%, and fixed beats adaptive even in shift \(0.500) Tj ET
